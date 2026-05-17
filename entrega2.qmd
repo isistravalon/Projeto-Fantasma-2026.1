@@ -1,62 +1,47 @@
 ---
 # Nome do arquivo PDF gerado na pasta resultado
-output-file: "Nome do alocado - análise 2"
+output-file: "Ísis Travalon Cancio - análise 2"
 ---
+```{r}
+getwd()
+```
 
 ```{r setup}
 source("rdocs/entrega2.R")
 ```
 
-```{r}
-# Rodar apenas uma vez na vida!
-## Instalando o tinytex(pacote apenas)
-### CRAN version
-install.packages('tinytex')
-
-
-## Baixando o tinytex
-library(tinytex)
-tinytex::install_tinytex()
-```
-
-
-
 # Análises
 
 ## Análise 1
 
-
+O objetivo desta análise é avaliar a evolução da receita mensal do jogo ao longo de 2025.
+Para fazer essa análise utilizei 
 ```{r}
-#| label: fig-
-#| fig-cap: "Gráfico  "
-
+#| label: fig-grafico2
+#| fig-cap: "Gráfico  2"
+grafico2
 ```
 
 
 ::: {#quad- layout-align="center" quad-pos="H"}
 ```{=latex}
-
-
-
+\begin{tabular} { | l |
+			S[table-format = -Inf.2]
+			|}
+	\hline
+		\textbf{Estatística} & \textbf{Valor} \\
+		\hline
+		Média & 136,53 \\
+		Desvio Padrão & 124,89 \\
+		Variância & 15597,14 \\
+		Mínimo & 25,63 \\
+		1º Quartil & 42,88 \\
+		Mediana & 55,69 \\
+		3º Quartil & 240,79 \\
+		Máximo & 331,66 \\
+	\hline
+	\end{tabular}
 ```
 
 Medidas resumo da 
 :::
-
-
-::: {#tbl-modalidades layout-align="center" tbl-pos="H"}
-```{=latex}
-
-
-```
-
-
-:::
-
-
-
-$\ref{fig-}$
-
-[@tbl-]
-
-[**Quadro** @quad-]
