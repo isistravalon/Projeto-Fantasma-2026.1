@@ -1,7 +1,6 @@
 
 source("rdocs/source/packages.R")
-readxl::read_excel(
-  +     "C:\\Users\\Alex Sovat\\Documents\\PS - ESTAT\\Projeto-Fantasma-2026.1\\pixel110011.xlsx" )
+
 library(tidyverse)
 library(lubridate)
 library(dplyr)
@@ -19,28 +18,33 @@ library(tidyverse)
 library(lubridate)
 
 library(readxl)
-compras <- read_excel("~/PS - ESTAT/pixel110011.xlsx", sheet = "info_compras")
-jogos <- read_excel("~/PS - ESTAT/pixel110011.xlsx", sheet = "info_jogos")
+
+compras <- read_excel("C:/Users/Alex Sovat/Downloads/pixel110011.xlsx", 
+                      sheet = "info_compras")
+
+jogos <- read_excel("C:/Users/Alex Sovat/Downloads/pixel110011.xlsx", 
+                    sheet = "info_jogos")
+
 analise_mine <- compras %>%
   left_join(jogos, by = c("gam5_id" = "ga8e_id")) %>%
-  filter(jogo == "Minecraft", year(as.Date(data_compra)) == 2025) %>%
+  filter(jogo == "Minecraft",lubridate::year(as.Date(data_compra)) == 2025) %>%
   mutate(receita_usd = (quantidade * `preco_unitario_R$`) / 5.19) %>%
-  group_by(mes = month(as.Date(data_compra), label = TRUE, abbr = FALSE)) %>%
+  group_by(mes = lubridate::month(as.Date(data_compra),label = TRUE,abbr = FALSE)) %>%
   summarise(total_receita_usd = sum(receita_usd, na.rm = TRUE))
 
-print(analise_minecraft)
+print(analise_mine)
 
 library(ggplot2)
-grafico_receita <- ggplot(analise_mine) + 
+grafico2 <- ggplot(analise_mine) + 
   aes(x = mes , y = total_receita_usd, group = 1) +
   geom_line(size = 1, colour = "#a11d21") + geom_point(colour = "#a11d21",
                                                        size = 2) +
   labs(x = "Mêses de 2025" , y = "Receita Total") +
   theme_estat() 
 
-print(grafico_receita)
+print(grafico2)
 
-analise_minecraft %>% 
+analise_mine %>% 
   print_quadro_resumo(var_name = total_receita_usd)
 
 
